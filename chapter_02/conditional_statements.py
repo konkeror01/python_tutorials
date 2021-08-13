@@ -6,6 +6,7 @@ age = int(input("Insert your age : "))
 # if age < 18:  # Boolean Expression -> That we receive an answer in yes or no / True or False
 #     print("You are not eligible for voting.")
 
+
 # 1 indentation = 1 tab = 4 spaces
 
 # if age >= 18:
