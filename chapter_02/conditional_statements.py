@@ -9,6 +9,7 @@ age = int(input("Insert your age : "))
 
 # 1 indentation = 1 tab = 4 spaces
 
+# This was some text added to explain git functionality
 # if age >= 18:
 #     print("You are eligible for voting.")
 
