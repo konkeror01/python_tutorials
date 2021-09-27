@@ -1,37 +1,57 @@
-alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
-            'v', 'w', 'x', 'y', 'z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
-            'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u','v', 'w', 'x', 'y', 'z']
 
-# TODO-1: Import and print the logo from art.py when the program starts.
-import art
-
-
-# TODO-2: What if the user enters a shift that is greater than the number of letters in the alphabet?
-# Try running the program and entering a shift number of 45.
-# Add some code so that the program continues to work even if the user enters a shift number greater than 26.
-# Hint: Think about how you can use the modulus (%).
+# input1 = input("Type 'encode' to encrypt and 'decode' to decrypt: ")
+# text = input("Type your message: ")
+# shift = int(input("Type the shift number: "))
 
 
-user_start = input("Type encode to encrypt, type decode to decrypt:")
-if user_start == "encode":
-    user_msg = input("Type your message")
-    user_key = input(int("Type the the sift number:"))
-    #start encoding process
+def startCipher():
+    input1 = input("Type 'encode' to encrypt and 'decode' to decrypt: ")
+    if input1 == "decode":
+        text = input("Type your message: ")
+        shift = int(input("Type the shift number: "))
+        decrypt(text, shift)
+    elif input1 == "encode":
+        text = input("Type your message: ")
+        shift = int(input("Type the shift number: "))
+        encrypt(text, shift)
+    else:
+        print("Please insert something meaningful.")
 
 
-# TODO-3: What happens if the user enters a number/symbol/space?
-# Can you fix the code to keep the number/symbol/space when the text is encoded/decoded?
-# e.g. start_text = "meet me at 3"
-# end_text = "•••• •• •• 3"
+def encrypt(message, shift_number):
+    encrypted_stuff = ""
+    for letter in message:
+        if letter in alphabet:
+            position = alphabet.index(letter)
+            new_pos = position + (shift_number % 26)
+            encrypted_stuff += alphabet[new_pos]
+        else:
+            encrypted_stuff += letter
+    print(f"The encoded text is {encrypted_stuff}")
 
-# TODO-4: Can you figure out a way to ask the user if they want to restart the cipher program?
-# e.g. Type 'yes' if you want to go again. Otherwise type 'no'.
-# If they type 'yes' then ask them for the direction/text/shift again and call the caesar() function again?
-# Hint: Try creating a while loop that continues to execute the program if the user types 'yes'.
 
-replay = input("Type yes if want to go again. Otherwise type no")
-while replay == 'yes':
-    encode_shift = input(int("Enter shift value: "))
+def decrypt(message, shift_number):
+    decrypted_stuff = ""
+    for letter in message:
+        if letter in alphabet:
+            c_positions = alphabet.index(letter)
+            real_position = c_positions - (shift_number % 26)
+            decrypted_stuff += alphabet[real_position]
+        else:
+            decrypted_stuff += letter
+    print(f"The decrypted text is {decrypted_stuff}")
 
+
+startCipher()
+
+replay = True
+while replay:
+    replay = input("Do you want to continue? (y/n): ")
+    if replay == "y":
+        startCipher()
+    else:
+        print("Thank you for wasting your time!")
+        replay = False
 
 
